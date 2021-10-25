@@ -18,6 +18,7 @@ import java.util.Optional;
 
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/api/phones")
 public class PhoneRestController {
@@ -47,27 +48,6 @@ public class PhoneRestController {
         return ResponseEntity.created(location).body(phone);
     }
 
-    @GetMapping("/{id}/image")
-    public ResponseEntity<Object> getImage(@PathVariable long id) throws SQLException{
-        Optional<Phone> phone = phoneService.findById(id);
-        if(phone.isPresent()){
-            int photoLength = (int) phone.get().getImageFileName().length();
-            return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg").body(new ByteArrayResource(phone.get().getImageFileName().getBytes(1,photoLength)));
-        }else{
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    @PostMapping("/{id}/image")
-    public ResponseEntity<Phone> postImage(@ModelAttribute PhoneDTO phoneDTO,@PathVariable long id) throws IOException, SQLException{
-        Phone phone = phoneService.findById(id).get();
-        MultipartFile image = phoneDTO.getImageFileName();
-        phone.setImageFileName(BlobProxy.generateProxy(image.getInputStream(),image.getSize()));
-        phoneService.save(phone);
-        URI location = fromCurrentRequest().path("/{id}").buildAndExpand(phone.getId()).toUri();
-        return ResponseEntity.created(location).body(phone);
-    }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Phone> deletePhone(@PathVariable long id){
         Optional<Phone> phone = phoneService.findById(id);
@@ -91,17 +71,4 @@ public class PhoneRestController {
         }
     }
 
-    @PutMapping("/{id}/image")
-    public ResponseEntity<Object> replaceImage(@ModelAttribute PhoneDTO phoneDTO,@PathVariable long id) throws IOException, SQLException{
-        Optional<Phone> phone = phoneService.findById(id);
-        if(phone.isPresent()){
-            MultipartFile image = phoneDTO.getImageFileName();
-            phone.get().setImageFileName(BlobProxy.generateProxy(image.getInputStream(), image.getSize()));
-            phoneService.save(phone.get());
-            URI location = fromCurrentRequest().path("/{id}").buildAndExpand(phone.get().getId()).toUri();
-            return ResponseEntity.created(location).body(phone.get());
-        }else{
-            return ResponseEntity.notFound().build();
-        }
-    }
 }

@@ -36,3 +36,40 @@
     transform: rotate(360deg);
   }
 }
+
+.list {
+  text-align: left;
+  max-width: 750px;
+  margin: auto;
+}
+
+.submit-form {
+  max-width: 300px;
+  margin: auto;
+}
+
+.edit-form {
+  max-width: 300px;
+  margin: auto;
+}
+.badge {
+  background-color: red; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+.navigateBar{
+  background-color:#61dafb;
+  color:black;
+  font-style: italic;
+}
+.phoneTitle{
+  font-style: italic;
+}
+.phoneData{
+  font-weight: bold;
+}

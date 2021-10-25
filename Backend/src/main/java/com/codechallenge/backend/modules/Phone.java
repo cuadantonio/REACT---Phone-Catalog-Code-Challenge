@@ -19,14 +19,11 @@ public class Phone {
     private String screen;
     private String processor;
     private long ram;
-
-    @Lob
-    @JsonIgnore
-    private Blob imageFileName;
+    private String imageFileName;
 
     protected Phone(){}
 
-    public Phone(String name, String manufacturer, String description, String color, long price, String screen, String processor, long ram) {
+    public Phone(String name, String manufacturer, String description, String color, long price, String screen, String processor, long ram, String imageFileName) {
         super();
         this.name = name;
         this.manufacturer = manufacturer;
@@ -36,6 +33,7 @@ public class Phone {
         this.screen = screen;
         this.processor = processor;
         this.ram = ram;
+        this.imageFileName = imageFileName;
     }
 
     public long getId() {
@@ -110,11 +108,11 @@ public class Phone {
         this.ram = ram;
     }
 
-    public Blob getImageFileName() {
+    public String getImageFileName() {
         return imageFileName;
     }
 
-    public void setImageFileName(Blob imageFileName) {
+    public void setImageFileName(String imageFileName) {
         this.imageFileName = imageFileName;
     }
 }

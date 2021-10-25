@@ -19,13 +19,16 @@ public class DatabaseInitialization {
 
     @PostConstruct
     public void init() throws IOException{
-        Phone phone1 = new Phone("iPhone 7","Apple","Nice phone","Black",769,"4.7 inch IPS","A10 Fusion",2);
-        setPhoneImage(phone1,"static/images/iPhone7.jpg");
+        Phone phone1 = new Phone("iPhone 7","Apple","Nice phone","Black",769,"4.7 inch IPS","A10 Fusion",2,"https://cf4.certideal.com/20792-thickbox_default/iphone-7-plus-32-gb-oro-rosa.jpg");
         phoneRepository.save(phone1);
+        Phone phone2 = new Phone("iPhone 7","Apple","Nice phone","Black",769,"4.7 inch IPS","A10 Fusion",2,"https://cf4.certideal.com/20792-thickbox_default/iphone-7-plus-32-gb-oro-rosa.jpg");
+        phoneRepository.save(phone2);
+        Phone phone3 = new Phone("iPhone 7","Apple","Nice phone","Black",769,"4.7 inch IPS","A10 Fusion",2,"https://cf4.certideal.com/20792-thickbox_default/iphone-7-plus-32-gb-oro-rosa.jpg");
+        phoneRepository.save(phone3);
+        Phone phone4 = new Phone("iPhone 7","Apple","Nice phone","Black",769,"4.7 inch IPS","A10 Fusion",2,"https://cf4.certideal.com/20792-thickbox_default/iphone-7-plus-32-gb-oro-rosa.jpg");
+        phoneRepository.save(phone4);
+        Phone phone5 = new Phone("iPhone 7","Apple","Nice phone","Black",769,"4.7 inch IPS","A10 Fusion",2,"https://cf4.certideal.com/20792-thickbox_default/iphone-7-plus-32-gb-oro-rosa.jpg");
+        phoneRepository.save(phone5);
     }
 
-    public void setPhoneImage(Phone phone, String classpathResource) throws IOException{
-        Resource image = new ClassPathResource(classpathResource);
-        phone.setImageFileName(BlobProxy.generateProxy(image.getInputStream(), image.contentLength()));
-    }
 }
