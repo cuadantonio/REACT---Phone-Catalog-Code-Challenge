@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PhoneDataService from "../services/phone.service";
-import {Link} from "react-router-dom";
 
 export default class Phone extends Component{
     constructor(props) {
